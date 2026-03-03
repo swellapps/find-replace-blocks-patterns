@@ -4,7 +4,7 @@ Tags: find replace, blocks, patterns, gutenberg, bulk edit
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,10 @@ Always run the **Preview Matches** step first to review affected posts. For extr
 2. Preview results table showing matched posts, match counts, and revision support.
 
 == Changelog ==
+
+= 1.2.0 =
+* Added internationalization support; all user-facing strings are now translation-ready.
+* Resolved all Plugin Check warnings: inlined nonce verification, added wp_unslash() to array inputs, and added explanatory phpcs:ignore comments for raw block markup fields.
 
 = 1.1.0 =
 * Renamed plugin to Find & Replace Blocks & Patterns; updated all internal prefixes to `frbp`.

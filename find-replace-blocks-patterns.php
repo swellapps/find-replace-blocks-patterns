@@ -5,7 +5,7 @@
  * Description:       Bulk find and replace Gutenberg block or pattern markup across posts, with post-type filtering, dry-run preview, and revision-backed undo.
  * Requires at least: 6.4
  * Requires PHP:      7.4
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Swell
  * Author URI:        https://swellapps.ai
  * License:           GPL-2.0-or-later
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'FRBP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FRBP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'FRBP_VERSION', '1.1.0' );
+define( 'FRBP_VERSION', '1.2.0' );
 
 require_once FRBP_PLUGIN_DIR . 'includes/class-find-replace.php';
 require_once FRBP_PLUGIN_DIR . 'includes/class-admin-page.php';
