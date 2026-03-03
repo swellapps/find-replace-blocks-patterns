@@ -82,7 +82,9 @@ class FRBP_Admin_Page {
 
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
 		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
-		$post_types = $this->sanitize_post_types( wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) );
+		$post_types = $this->sanitize_post_types(
+			array_map( 'sanitize_key', wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) )
+		);
 
 		if ( $find === '' ) {
 			wp_send_json_error( [ 'message' => __( 'The Find field cannot be empty.', 'find-replace-blocks-patterns' ) ] );
@@ -108,7 +110,9 @@ class FRBP_Admin_Page {
 		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
 		$replace    = wp_unslash( (string) ( $_POST['replace'] ?? '' ) );
-		$post_types = $this->sanitize_post_types( wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) );
+		$post_types = $this->sanitize_post_types(
+			array_map( 'sanitize_key', wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) )
+		);
 
 		if ( $find === '' ) {
 			wp_send_json_error( [ 'message' => __( 'The Find field cannot be empty.', 'find-replace-blocks-patterns' ) ] );
