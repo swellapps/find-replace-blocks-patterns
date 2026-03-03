@@ -75,10 +75,14 @@ class FRBP_Admin_Page {
 	}
 
 	public function ajax_preview(): void {
-		$this->verify_request();
+		check_ajax_referer( 'frbp_nonce', 'nonce' );
+		if ( ! current_user_can( 'edit_others_posts' ) ) {
+			wp_send_json_error( [ 'message' => __( 'You do not have permission to perform this action.', 'find-replace-blocks-patterns' ) ] );
+		}
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
 		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
-		$post_types = $this->sanitize_post_types( $_POST['post_types'] ?? [] );
+		$post_types = $this->sanitize_post_types( wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) );
 
 		if ( $find === '' ) {
 			wp_send_json_error( [ 'message' => __( 'The Find field cannot be empty.', 'find-replace-blocks-patterns' ) ] );
@@ -95,11 +99,16 @@ class FRBP_Admin_Page {
 	}
 
 	public function ajax_execute(): void {
-		$this->verify_request();
+		check_ajax_referer( 'frbp_nonce', 'nonce' );
+		if ( ! current_user_can( 'edit_others_posts' ) ) {
+			wp_send_json_error( [ 'message' => __( 'You do not have permission to perform this action.', 'find-replace-blocks-patterns' ) ] );
+		}
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
 		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
 		$replace    = wp_unslash( (string) ( $_POST['replace'] ?? '' ) );
-		$post_types = $this->sanitize_post_types( $_POST['post_types'] ?? [] );
+		$post_types = $this->sanitize_post_types( wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) );
 
 		if ( $find === '' ) {
 			wp_send_json_error( [ 'message' => __( 'The Find field cannot be empty.', 'find-replace-blocks-patterns' ) ] );
@@ -114,8 +123,8 @@ class FRBP_Admin_Page {
 
 		wp_send_json_success( [
 			'count'   => $count,
-			/* translators: %d = number of posts updated */
 			'message' => sprintf(
+				/* translators: %d = number of posts updated */
 				_n(
 					'Done. %d post was updated. Revisions were saved — use the post editor to revert if needed.',
 					'Done. %d posts were updated. Revisions were saved — use the post editor to revert if needed.',
@@ -125,15 +134,6 @@ class FRBP_Admin_Page {
 				$count
 			),
 		] );
-	}
-
-	private function verify_request(): void {
-		if ( ! check_ajax_referer( 'frbp_nonce', 'nonce', false ) ) {
-			wp_send_json_error( [ 'message' => __( 'Security check failed.', 'find-replace-blocks-patterns' ) ] );
-		}
-		if ( ! current_user_can( 'edit_others_posts' ) ) {
-			wp_send_json_error( [ 'message' => __( 'You do not have permission to perform this action.', 'find-replace-blocks-patterns' ) ] );
-		}
 	}
 
 	private function sanitize_post_types( $raw ): array {

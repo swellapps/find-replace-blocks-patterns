@@ -62,6 +62,7 @@ class FRBP_Find_Replace {
 
 			$new_content = str_replace( $find, $replace, $post->post_content );
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Direct update is intentional to avoid bumping post_modified; post cache is cleared below.
 			$wpdb->update(
 				$wpdb->posts,
 				[ 'post_content' => $new_content ],
