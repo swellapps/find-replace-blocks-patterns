@@ -1,0 +1,198 @@
+.frbp-wrap {
+	max-width: 1100px;
+}
+
+.frbp-wrap > .description {
+	margin: 8px 0 20px;
+	color: #646970;
+}
+
+/* ── Form layout ─────────────────────────────────────────── */
+
+.frbp-form-wrapper {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 24px;
+}
+
+.frbp-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	margin-bottom: 24px;
+}
+
+@media ( max-width: 800px ) {
+	.frbp-fields {
+		grid-template-columns: 1fr;
+	}
+}
+
+.frbp-field label {
+	display: block;
+	margin-bottom: 8px;
+}
+
+.frbp-field textarea {
+	width: 100%;
+	font-family: Consolas, "Courier New", monospace;
+	font-size: 12px;
+	line-height: 1.6;
+	resize: vertical;
+	box-sizing: border-box;
+}
+
+/* ── Post type list ──────────────────────────────────────── */
+
+.frbp-post-types {
+	margin-bottom: 24px;
+}
+
+.frbp-post-types > strong {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.frbp-post-types ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	list-style: none;
+}
+
+.frbp-post-types li {
+	margin: 0;
+}
+
+.frbp-post-types label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+}
+
+.frbp-slug {
+	color: #8c8f94;
+	font-size: 12px;
+}
+
+/* ── Action row ──────────────────────────────────────────── */
+
+.frbp-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.frbp-actions .spinner {
+	float: none;
+	margin: 0;
+}
+
+/* ── Results section ─────────────────────────────────────── */
+
+.frbp-results {
+	margin-top: 24px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 24px;
+}
+
+.frbp-results h2 {
+	margin-top: 0;
+}
+
+.frbp-matches-table {
+	margin-bottom: 16px;
+}
+
+.frbp-matches-table th,
+.frbp-matches-table td {
+	vertical-align: middle;
+}
+
+/* Status column */
+.frbp-matches-table td:nth-child(3) {
+	width: 80px;
+}
+
+/* Matches column */
+.frbp-matches-table td:nth-child(4) {
+	text-align: center;
+	width: 80px;
+}
+
+/* Revisions column */
+.frbp-matches-table td:nth-child(5) {
+	width: 90px;
+}
+
+/* Edit column */
+.frbp-matches-table td:last-child {
+	width: 60px;
+}
+
+.frbp-status {
+	display: inline-block;
+	padding: 2px 7px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.frbp-status-draft {
+	background: #f0f6fc;
+	color: #2271b1;
+}
+
+.frbp-status-future {
+	background: #fff8e5;
+	color: #9e6800;
+}
+
+.frbp-status-private {
+	background: #f6f7f7;
+	color: #50575e;
+}
+
+.frbp-revision-yes {
+	color: #1e8a44;
+	font-weight: 600;
+}
+
+.frbp-revision-no {
+	color: #d63638;
+	font-weight: 600;
+}
+
+.frbp-revision-warning {
+	background: #fcf0f1;
+	border-left: 4px solid #d63638;
+	padding: 10px 14px;
+	margin: 12px 0 0;
+	border-radius: 0 4px 4px 0;
+}
+
+/* ── Confirm message ─────────────────────────────────────── */
+
+.frbp-confirm-message {
+	background: #fff8e5;
+	border-left: 4px solid #dba617;
+	padding: 10px 14px;
+	margin: 0;
+	border-radius: 0 4px 4px 0;
+}
+
+/* ── Notices ─────────────────────────────────────────────── */
+
+.frbp-notice {
+	margin-top: 20px;
+}
