@@ -24,10 +24,6 @@ define( 'FRBP_VERSION', '1.1.0' );
 require_once FRBP_PLUGIN_DIR . 'includes/class-find-replace.php';
 require_once FRBP_PLUGIN_DIR . 'includes/class-admin-page.php';
 
-add_action( 'init', function () {
-	load_plugin_textdomain( 'find-replace-blocks-patterns', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-} );
-
 add_action( 'admin_menu', function () {
 	( new FRBP_Admin_Page() )->register_menu();
 } );
