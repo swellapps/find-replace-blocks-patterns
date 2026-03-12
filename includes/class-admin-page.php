@@ -80,8 +80,9 @@ class FRBP_Admin_Page {
 			wp_send_json_error( [ 'message' => __( 'You do not have permission to perform this action.', 'find-replace-blocks-patterns' ) ] );
 		}
 
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
-		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
+		// Block markup must be preserved as-is (includes <!-- wp:... --> comment syntax).
+		// wp_check_invalid_utf8() sanitizes encoding without stripping HTML structure.
+		$find       = wp_check_invalid_utf8( wp_unslash( (string) ( $_POST['find'] ?? '' ) ) );
 		$post_types = $this->sanitize_post_types(
 			array_map( 'sanitize_key', wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) )
 		);
@@ -106,10 +107,10 @@ class FRBP_Admin_Page {
 			wp_send_json_error( [ 'message' => __( 'You do not have permission to perform this action.', 'find-replace-blocks-patterns' ) ] );
 		}
 
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
-		$find       = wp_unslash( (string) ( $_POST['find'] ?? '' ) );
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Raw block markup must be preserved exactly; any HTML sanitizer would corrupt it.
-		$replace    = wp_unslash( (string) ( $_POST['replace'] ?? '' ) );
+		// Block markup must be preserved as-is (includes <!-- wp:... --> comment syntax).
+		// wp_check_invalid_utf8() sanitizes encoding without stripping HTML structure.
+		$find       = wp_check_invalid_utf8( wp_unslash( (string) ( $_POST['find'] ?? '' ) ) );
+		$replace    = wp_check_invalid_utf8( wp_unslash( (string) ( $_POST['replace'] ?? '' ) ) );
 		$post_types = $this->sanitize_post_types(
 			array_map( 'sanitize_key', wp_unslash( (array) ( $_POST['post_types'] ?? [] ) ) )
 		);

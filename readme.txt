@@ -4,7 +4,7 @@ Tags: find replace, blocks, patterns, gutenberg, bulk edit
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,9 @@ Always run the **Preview Matches** step first to review affected posts. For extr
 2. Preview results table showing matched posts, match counts, and revision support.
 
 == Changelog ==
+
+= 1.1.3 =
+* Sanitize find/replace inputs with wp_check_invalid_utf8() to strip malformed encoding while preserving Gutenberg block comment syntax.
 
 = 1.1.2 =
 * Fixed remaining Plugin Check sanitization warnings by inlining sanitize_key() on post_types array input.
